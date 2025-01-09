@@ -1,0 +1,42 @@
+def apply_all_func(int_list, *functions):
+    """
+    Применяет каждую функцию из переданных к списку чисел и возвращает результаты.
+
+    :param int_list: список чисел (int, float)
+    :param functions: функции, применимые к спискам чисел
+    :return: словарь с результатами работы функций
+    """
+    results = {}
+
+    for func in functions:
+        try:
+            # Добавляем результат работы функции под её именем
+            results[func.__name__] = func(int_list)
+        except Exception as e:
+            # Обрабатываем возможные ошибки и записываем их в результат
+            results[func.__name__] = f"Error: {e}"
+
+    return results
+
+# Пример функций для работы с числами
+def sum_of_elements(lst):
+    return sum(lst)
+
+def max_element(lst):
+    return max(lst)
+
+def min_element(lst):
+    return min(lst)
+
+def average(lst):
+    return sum(lst) / len(lst) if lst else 0
+
+# Демонстрация работы функции apply_all_func
+numbers = [1, 2, 3, 4, 5]
+
+# Вызов с набором функций
+results = apply_all_func(numbers, sum_of_elements, max_element, min_element, average)
+
+# Вывод результатов
+for func_name, result in results.items():
+    print(f"{func_name}: {result}")
