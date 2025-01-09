@@ -3,16 +3,11 @@ first = ['Strings', 'Student', 'Computers']
 second = ['Строка', 'Урбан', 'Компьютер']
 
 # Генераторная сборка для разницы длин строк с использованием zip
-first_result = (len(f) - len(s) for f, s in zip(first, second) if len(f) != len(s))
+first_result = [len(f) - len(s) for f, s in zip(first, second) if len(f) != len(s)]
 
 # Генераторная сборка для сравнения длин строк с использованием range и len
-second_result = (len(first[i]) == len(second[i]) for i in range(len(first)))
-# Вывод результатов first_result
-print("Разница длин:")
-for result in first_result:
-    print(result)
+second_result = [len(first[i]) == len(second[i]) for i in range(len(first))]
 
-# Вывод результатов second_result
-print("\nСравнение длин:")
-for result in second_result:
-    print(result)
+# Вывод результатов
+print("Разница длин строк:", first_result)
+print("Сравнение длин строк:", second_result)
